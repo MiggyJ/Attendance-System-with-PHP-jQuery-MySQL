@@ -1,9 +1,9 @@
 <?php 
 
-	$host = 'localhost';
-  $mydb = 'attendance';
-  $user = 'dlrowehtanool';
-  $pass = 'dnwnthsu';
+  $host = 'yourhost';
+  $mydb = 'yourdatabase';
+  $user = 'yourusername';
+  $pass = 'yourpassword';
   $dsn = 'mysql:host='. $host .';dbname='.$mydb;
 
   $db = new PDO($dsn, $user, $pass);
