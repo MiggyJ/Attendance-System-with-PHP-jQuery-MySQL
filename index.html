@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Attendance using PHP</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Compiled and minified CSS -->
+	    <link rel="stylesheet" href="css/googleIcons.css">
+      <link rel="stylesheet" href="css/materialize.min.css">
+      <style>
+        /* label focus color */
+        .input-field input[type=text]:not(.browser-default):focus:not([readonly]) + label,  .input-field input[type=password]:not(.browser-default):focus:not([readonly]) + label{
+          color: #f57c00;
+        }
+        /* label underline focus color */
+        .input-field input[type=text]:not(.browser-default):focus:not([readonly]):focus, .input-field input[type=password]:not(.browser-default):focus:not([readonly])  {
+          border-bottom: 1px solid #f57c00;
+          box-shadow: 0 1px 0 0 #f57c00;
+        }
+				/*Select dropdown color*/
+        ul.dropdown-content li span {
+            color: #f57c00; /* no need for !important :) */
+        }
+      </style>
+    </head>
+
+    <body>
+  		<!-- Navbar -->
+      <nav>
+        <div class="nav-wrapper orange darken-3">
+          <a href="#" class="brand-logo center">Attendance</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+              <a class="modal-trigger" href="#signModal">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+			
+			<!-- Main Content -->
+      <div class="row show-on-large">
+        <div class="col s8 offset-s2 l4 offset-l1" style="height: 100%;">
+          <div class="card" style="margin-top: 70px;">
+            <div class="card-content container" style="margin-bottom: -30px;">
+              <span class="card-title center">Record your Attendance!</span>
+              <form action="" class="row">
+                 <div class="row">
+                  <div class="input-field col s12">
+                    <input id="StudentNumber" type="text">
+                    <label for="StudentNumber">Student Number</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <input id="userPass" type="password">
+                    <label for="userPass">Password</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-action center-align">
+              <button class="btn orange darken-3" onclick="logIn([$('#StudentNumber').val(), $('#userPass').val()])">Submit</button>
+            </div>
+          </div>
+          <div class="hide-on-large-only center">
+          	<p>or Sign Up <a class="modal-trigger" href="#signModal">here</a></p>
+          </div>
+          
+        </div>
+        <div class="col l5 offset-l1 hide-on-med-and-down">
+          <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh;">
+            <div class="row" >
+              <img src="asset/Logo.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+			<!-- Upload Modal -->
+      <div id="uploadPhoto" class="modal" style="max-width: 500px; max-height: 700px;">
+      	<div class="modal-content center">
+      		<label>
+      			<input type="file" onchange="preview()" name="attPhoto" id="attPhoto" accept="image/*" style="display: none;">
+            <img id="previewImg" src="asset/Photo.png" alt="" style="max-height: 400px; max-width: 90%;">
+            <div class="progress orange lighten-2" >
+              <div class="determinate orange darken-3" style="width: 0%;" ></div>
+            </div>
+      		</label>
+      		<div class="modal-footer center-align">
+            <p>Click image above to upload.</p>
+            <p>Cancelling will log you out.</p>
+      			<div onclick="upload()" id="uploadSubmit" class="btn btn-flat waves-effect waves-orange orange-text darken-text-3">Submit</div>
+      			<a href="php/logout.php" class="btn btn-flat white modal-close">Cancel</a>
+      		</div>
+      	</div>
+      </div>
+      
+      <!-- Sign Up Modal -->
+      <div id="signModal" class="modal modal-fixed-footer container" style="max-width: 500px;">
+      	<!-- Sign Up Form -->
+      	<div class="modal-content center" id="signMain">
+      		<h5>Enter your credentials</h5>
+      		<div class="input-field col s8 offset-s2">
+      			<input type="text" name="signNumber" id="signNumber" class="validate">
+      			<label for="signNumber">Enter Student Number</label>
+          </div>
+          <div class="input-field col s8 offset-s2">
+      			<input type="text" name="signFirstName" id="signFirstName" class="validate">
+      			<label for="signFirstName">Enter First Name</label>
+      		</div>
+      		<div class="input-field col s8 offset-s2">
+      			<input type="text" name="signLastName" id="signLastName" class="validate">
+      			<label for="signLastName">Enter Last Name</label>
+      		</div>
+      		<div class="input-field col s8 offset-s2">
+      			<select name="signSection" id="signSection" >
+              <option value="BSIT 2-1">BSIT 2-1</option>
+              <option value="BSIT 2-2">BSIT 2-2</option>
+              <label for="signSection">Select your Section</label>
+            </select>
+      		</div>
+      		<div class="input-field col s8 offset-s2">
+      			<input type="password" name="signPass" id="signPass" disabled class="validate" minlength="8">
+      			<label for="signPass" data-error="Must be at least 8 characters">Enter Password</label>
+      		</div>
+      		<div class="input-field col s8 offset-s2">
+      			<input type="password" name="signPass2" disabled id="signPass2" class="validate">
+      			<label for="signPass2" data-error="Passwords do not match">Confirm Password</label>
+      		</div>
+        </div>
+				<!-- Sign Up Spinner -->
+        <div class="modal-content" id="signLoad" style="display: none; justify-content: center; align-items: center; flex-direction: column;">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-yellow-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+          <p>Loading...</p>
+        </div>
+        <!-- Sign Up Buttons -->
+      	<div class="modal-footer">
+      		<button id="signBtn" class="disabled btn-flat waves-effect waves-orange">Sign Up</button>
+      		<button class="btn-flat btn-waves modal-close">Cancel</button>
+      	</div>
+      </div>
+      
+      <!-- Spinner -->
+      <div id="cover" style="z-index: 10; height: 100vh; width: 100vw; position: fixed;
+      background-color: rgba(0,0,0,0.7); top: 0; left: 0; display: none; flex-direction: column; align-items: center; justify-content: center">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-yellow-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <p class="white-text">Loading...</p>
+      </div>
+
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/materialize.min.js"></script>
+      <script src="js/validation.js"></script>
+      <script src="app.js"></script>
+      </script>
+    </body>
+  </html>
