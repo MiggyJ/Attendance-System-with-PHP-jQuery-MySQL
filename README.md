@@ -2,7 +2,7 @@
 
 Database credentials can be found at php/db.php. Edit it according to your system.
 You need to create a folder named "uploads" for the images to be stored on your machine.
-I made it so student number is formatted as 9999-99999.
+I made it with student number formatted as 9999-99999.
 
 This is an school attendance system I tried to make inspired by a work of one of my senior in college. We used his system but were not given any code from it. I just wanted to try if I can make it too.
 
