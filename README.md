@@ -3,12 +3,12 @@
 Database credentials can be found at php/db.php. Edit it according to your system.
 You need to create a folder named "uploads" for the images to be stored on your machine.
 folder structure
--admin
--asset
--css
--js
--php
--uploads*
+--admin
+--asset
+--css
+--js
+--php
+--uploads*
 
 
 
