@@ -4,7 +4,7 @@
 
     session_start();
     // Check if ADMIN
-    if (!isset($_SESSION['admin'])) {
+    if ($_SESSION['admin'] == 1) {
       echo "<script language='javascript'>
               alert('You are not an ADMIN! GET OUT!')
               window.location.href = '../index.html'
