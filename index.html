@@ -74,22 +74,23 @@
       </div>
 
 			<!-- Upload Modal -->
-      <div id="uploadPhoto" class="modal" style="max-width: 500px; max-height: 700px;">
+      <div id="uploadPhoto" class="modal modal-fixed-footer" style="max-width: 400px; max-height: 500px;">
       	<div class="modal-content center">
       		<label>
       			<input type="file" onchange="preview()" name="attPhoto" id="attPhoto" accept="image/*" style="display: none;">
-            <img id="previewImg" src="asset/Photo.png" alt="" style="max-height: 400px; max-width: 90%;">
+            <img id="previewImg" src="asset/Photo.png" alt="" style="max-height: 400px; max-width: 350px;">
             <div class="progress orange lighten-2" >
               <div class="determinate orange darken-3" style="width: 0%;" ></div>
             </div>
       		</label>
-      		<div class="modal-footer center-align">
-            <p>Click image above to upload.</p>
-            <p>Cancelling will log you out.</p>
-      			<div onclick="upload()" id="uploadSubmit" class="btn btn-flat waves-effect waves-orange orange-text darken-text-3">Submit</div>
-      			<a href="php/logout.php" class="btn btn-flat white modal-close">Cancel</a>
-      		</div>
+      		<p>Click image above to upload.</p>
+          <p>Cancelling will log you out.</p>
+      		
       	</div>
+      	<div class="modal-footer">
+      			<div onclick="upload()" id="uploadSubmit" class="btn-flat waves-effect waves-orange orange-text darken-text-3">Submit</div>
+      			<a href="php/logout.php" class="btn-flat white modal-close">Cancel</a>
+      		</div>
       </div>
       
       <!-- Sign Up Modal -->
