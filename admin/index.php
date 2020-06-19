@@ -4,7 +4,7 @@
 
     session_start();
     // Check if ADMIN
-    if ($_SESSION['admin'] == 1) {
+    if (!isset($_SESSION['admin'])) {
       echo "<script language='javascript'>
               alert('You are not an ADMIN! GET OUT!')
               window.location.href = '../index.html'
@@ -26,7 +26,10 @@
       }
       .datepicker-cancel, .datepicker-done, .datepicker-table td.is-today{
         color: #f57c00
-      } 
+      }
+      .datepicker-table td.is-selected{
+        color: #fff;
+      }
       ul.dropdown-content li span {
         color: #f57c00; /* no need for !important :) */
       }
