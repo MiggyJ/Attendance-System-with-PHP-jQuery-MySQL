@@ -20,11 +20,18 @@
         ul.dropdown-content li span {
             color: #f57c00; /* no need for !important :) */
         }
+        img{
+        	max-height: 250px;
+        }
+        .modal{
+        	max-width: 500px;
+        	max-height: 700px;
+        }
       </style>
     </head>
 
     <body>
-  		<!-- Navbar -->
+      <!-- Navbar -->
       <nav>
         <div class="nav-wrapper orange darken-3">
           <a href="#" class="brand-logo center">Attendance</a>
@@ -36,7 +43,7 @@
         </div>
       </nav>
 			
-			<!-- Main Content -->
+      <!-- Main Content -->
       <div class="row show-on-large">
         <div class="col s8 offset-s2 l4 offset-l1" style="height: 100%;">
           <div class="card" style="margin-top: 70px;">
@@ -73,12 +80,12 @@
         </div>
       </div>
 
-			<!-- Upload Modal -->
-      <div id="uploadPhoto" class="modal modal-fixed-footer" style="max-width: 400px; max-height: 500px;">
+      <!-- Upload Modal -->
+      <div id="uploadPhoto" class="modal modal-fixed-footer">
       	<div class="modal-content center">
       		<label>
       			<input type="file" onchange="preview()" name="attPhoto" id="attPhoto" accept="image/*" style="display: none;">
-            <img id="previewImg" src="asset/Photo.png" alt="" style="max-height: 400px; max-width: 350px;">
+            <img id="previewImg" src="asset/Photo.png" alt="">
             <div class="progress orange lighten-2" >
               <div class="determinate orange darken-3" style="width: 0%;" ></div>
             </div>
@@ -88,45 +95,45 @@
       		
       	</div>
       	<div class="modal-footer">
-      			<div onclick="upload()" id="uploadSubmit" class="btn-flat waves-effect waves-orange orange-text darken-text-3">Submit</div>
-      			<a href="php/logout.php" class="btn-flat white modal-close">Cancel</a>
-      		</div>
+      		<div onclick="upload()" id="uploadSubmit" class="btn-flat waves-effect waves-orange orange-text darken-text-3">Submit</div>
+      		<a href="php/logout.php" class="btn-flat white modal-close">Cancel</a>
+      	</div>
       </div>
       
       <!-- Sign Up Modal -->
-      <div id="signModal" class="modal modal-fixed-footer container" style="max-width: 500px;">
+      <div id="signModal" class="modal modal-fixed-footer container">
       	<!-- Sign Up Form -->
       	<div class="modal-content center" id="signMain">
       		<h5>Enter your credentials</h5>
       		<div class="input-field col s8 offset-s2">
-      			<input type="text" name="signNumber" id="signNumber" class="validate">
-      			<label for="signNumber">Enter Student Number</label>
+      		<input type="text" name="signNumber" id="signNumber" class="validate">
+      		<label for="signNumber">Enter Student Number</label>
           </div>
           <div class="input-field col s8 offset-s2">
-      			<input type="text" name="signFirstName" id="signFirstName" class="validate">
-      			<label for="signFirstName">Enter First Name</label>
-      		</div>
-      		<div class="input-field col s8 offset-s2">
-      			<input type="text" name="signLastName" id="signLastName" class="validate">
-      			<label for="signLastName">Enter Last Name</label>
-      		</div>
-      		<div class="input-field col s8 offset-s2">
-      			<select name="signSection" id="signSection" >
-              <option value="BSIT 2-1">BSIT 2-1</option>
-              <option value="BSIT 2-2">BSIT 2-2</option>
-              <label for="signSection">Select your Section</label>
-            </select>
-      		</div>
-      		<div class="input-field col s8 offset-s2">
-      			<input type="password" name="signPass" id="signPass" disabled class="validate" minlength="8">
-      			<label for="signPass" data-error="Must be at least 8 characters">Enter Password</label>
-      		</div>
-      		<div class="input-field col s8 offset-s2">
-      			<input type="password" name="signPass2" disabled id="signPass2" class="validate">
-      			<label for="signPass2" data-error="Passwords do not match">Confirm Password</label>
-      		</div>
+      		<input type="text" name="signFirstName" id="signFirstName" class="validate">
+      		<label for="signFirstName">Enter First Name</label>
+      	  </div>
+      	  <div class="input-field col s8 offset-s2">
+      		<input type="text" name="signLastName" id="signLastName" class="validate">
+      		<label for="signLastName">Enter Last Name</label>
+       	  </div>
+      	  <div class="input-field col s8 offset-s2">
+      		<select name="signSection" id="signSection" >
+              		<option value="BSIT 2-1">BSIT 2-1</option>
+              		<option value="BSIT 2-2">BSIT 2-2</option>
+                	<label for="signSection">Select your Section</label>
+           	</select>
+	  </div>
+	  <div class="input-field col s8 offset-s2">
+		<input type="password" name="signPass" id="signPass" disabled class="validate" minlength="8">
+		<label for="signPass" data-error="Must be at least 8 characters">Enter Password</label>
+	  </div>
+	  <div class="input-field col s8 offset-s2">
+		<input type="password" name="signPass2" disabled id="signPass2" class="validate">
+		<label for="signPass2" data-error="Passwords do not match">Confirm Password</label>
+	  </div>
         </div>
-				<!-- Sign Up Spinner -->
+	<!-- Sign Up Spinner -->
         <div class="modal-content" id="signLoad" style="display: none; justify-content: center; align-items: center; flex-direction: column;">
           <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-yellow-only">
